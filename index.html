@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Roblox Audio Player</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin-top: 50px;
+        }
+        input {
+            padding: 10px;
+            width: 300px;
+            margin-bottom: 20px;
+        }
+        button {
+            padding: 10px 20px;
+            cursor: pointer;
+        }
+        audio {
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Roblox Audio Player</h1>
+    <p>Enter the Roblox Audio ID below:</p>
+    <input type="text" id="audioId" placeholder="Roblox Audio ID">
+    <button onclick="playAudio()">Play Audio</button>
+
+    <div id="playerContainer"></div>
+
+    <script>
+        function playAudio() {
+            const audioId = document.getElementById('audioId').value.trim();
+            if (!audioId) {
+                alert("Please enter a valid Roblox Audio ID.");
+                return;
+            }
+
+            // Clear previous player
+            const playerContainer = document.getElementById('playerContainer');
+            playerContainer.innerHTML = '';
+
+            // Create audio element using the rbxcdn.com URL
+            const audioUrl = `https://rbxcdn.com/${audioId}.mp3`;
+            const audioElement = document.createElement('audio');
+            audioElement.controls = true;
+            audioElement.src = audioUrl;
+
+            // Append audio element to the container
+            playerContainer.appendChild(audioElement);
+        }
+    </script>
+</body>
+</html>
