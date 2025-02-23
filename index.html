@@ -19,8 +19,11 @@
             padding: 10px 20px;
             cursor: pointer;
         }
-        audio {
+        iframe {
             margin-top: 20px;
+            width: 100%;
+            height: 500px;
+            border: none;
         }
     </style>
 </head>
@@ -28,30 +31,26 @@
     <h1>Roblox Audio Player</h1>
     <p>Enter the Roblox Audio ID below:</p>
     <input type="text" id="audioId" placeholder="Roblox Audio ID">
-    <button onclick="playAudio()">Play Audio</button>
+    <button onclick="embedAudio()">Listen to Audio</button>
 
     <div id="playerContainer"></div>
 
     <script>
-        function playAudio() {
+        function embedAudio() {
             const audioId = document.getElementById('audioId').value.trim();
             if (!audioId) {
                 alert("Please enter a valid Roblox Audio ID.");
                 return;
             }
 
-            // Clear previous player
+            // Clear previous iframe
             const playerContainer = document.getElementById('playerContainer');
             playerContainer.innerHTML = '';
 
-            // Create audio element using the rbxcdn.com URL
-            const audioUrl = `https://rbxcdn.com/${audioId}.mp3`;
-            const audioElement = document.createElement('audio');
-            audioElement.controls = true;
-            audioElement.src = audioUrl;
-
-            // Append audio element to the container
-            playerContainer.appendChild(audioElement);
+            // Create iframe to embed Roblox audio page
+            const iframe = document.createElement('iframe');
+            iframe.src = `https://www.roblox.com/library/${audioId}`;
+            playerContainer.appendChild(iframe);
         }
     </script>
 </body>
